@@ -50,7 +50,7 @@ void MainWindow::createAction()
 {
     finalEx = new QAction(QIcon(":/img/src/Final_Cut_Pro_X_96px_1134672_easyicon.net.png"), tr("Final"), this);
     connect(finalEx, SIGNAL(triggered(bool)), this, SLOT(on_actionFinal_triggered()));
-    screenShot = new QAction(QIcon(":/img/src/Final_Cut_Pro_X_96px_1134672_easyicon.net.png"), tr("Final"), this);
+    screenShot = new QAction(QIcon(":/img/src/Screenshot.png"), tr("Shot"), this);
     connect(screenShot, SIGNAL(triggered(bool)), this, SLOT(on_actionScreenShot_triggered()));
 }
 
@@ -79,7 +79,6 @@ void MainWindow::startCatureImage()
 
 void MainWindow::onCompleteCature(QPixmap captureImage)
 {
-    qDebug()<<"23";
     updateRightImage(captureImage);
 }
 

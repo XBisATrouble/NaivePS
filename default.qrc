@@ -32,6 +32,7 @@
         <file>src/settings_backup_restore_48px_1182197_easyicon.net.png</file>
         <file>src/clear_gtk_72px_43338_easyicon.net.png</file>
         <file>src/Final_Cut_Pro_X_96px_1134672_easyicon.net.png</file>
+        <file>src/Screenshot.png</file>
     </qresource>
     <qresource prefix="/language">
         <file>cn.qm</file>
