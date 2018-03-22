@@ -1,8 +1,4 @@
-# ImageQt
-
-Image viewer powered by Qt 5.8.0
-
-## 功能（按完成时间排序）
+## 功能
 
 1. 基本的图像查看
 2. 图像缩放、旋转、翻转
@@ -24,8 +20,3 @@ Image viewer powered by Qt 5.8.0
 18. 中值滤波
 19. Laplace锐化
 20. Sobel边缘检测
-
-## 截图
-
-![1](http://i2.muimg.com/567571/e133813c5cc8bb6b.png)
-
