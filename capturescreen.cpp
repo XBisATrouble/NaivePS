@@ -4,6 +4,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QClipboard>
+#include <QMenu>
 
 // 彩色鼠标按钮图片的十六进制数据
 static const unsigned char uc_mouse_image[] = {
@@ -222,11 +223,12 @@ void CaptureScreen::paintEvent(QPaintEvent *event)
     m_painter.end();  //重绘结束;
 }
 
-void CaptureScreen::onSaveScreen(QPixmap catureImage)
+void CaptureScreen::onSaveScreen()
 {
     // 把图片放入剪切板
     QClipboard *board = QApplication::clipboard();
-    board->setPixmap(catureImage);
+    board->setPixmap(m_capturePixmap);
+    close();
 }
 
 // 根据当前截取状态获取当前选中的截图区域;
@@ -309,9 +311,8 @@ void CaptureScreen::keyPressEvent(QKeyEvent *event)
     // Eeter键完成截图;
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)
     {
-        onSaveScreen(m_capturePixmap);
         signalCompleteCature(m_capturePixmap);
-        close();
+        onSaveScreen();
     }
 }
 
@@ -529,4 +530,14 @@ QRect CaptureScreen::getStretchRect()
     }
 
     return stretchRect;
+}
+
+void CaptureScreen::contextMenuEvent(QContextMenuEvent *event)
+{
+    QMenu *menu = new QMenu(this);
+    menu->addAction(QIcon(":/img/src/comfirm.png"),QStringLiteral("完成"),this,SLOT(onSaveScreen()));
+    menu->addSeparator();
+    menu->addAction(QIcon(":/img/src/close.png"),QStringLiteral("退出"), this, SLOT(close()));
+    menu->move(cursor().pos()); //让菜单显示的位置在鼠标的坐标上
+    menu->show();
 }

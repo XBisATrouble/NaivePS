@@ -34,6 +34,8 @@
         <file>src/Screenshot.png</file>
         <file>src/save.png</file>
         <file>src/save-as.png</file>
+        <file>src/close.png</file>
+        <file>src/comfirm.png</file>
     </qresource>
     <qresource prefix="/language">
         <file>cn.qm</file>

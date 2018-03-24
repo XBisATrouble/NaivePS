@@ -59,7 +59,8 @@ private:
     void keyPressEvent(QKeyEvent *event);
     void paintEvent(QPaintEvent *event);
 
-    void onSaveScreen(QPixmap catureImage);
+private slots:
+    void onSaveScreen();
 
 private:
     QPixmap m_loadPixmap, m_capturePixmap;
@@ -77,6 +78,9 @@ private:
     QRect m_leftCenterRect, m_topCenterRect, m_rightCenterRect, m_bottomCenterRect;
     // 当前鼠标所在顶点状态;
     StretchRectState m_stretchRectState;
+
+protected:
+    virtual void contextMenuEvent(QContextMenuEvent *);
 };
 
 #endif // CAPTURESCREEN_H
