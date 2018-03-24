@@ -59,6 +59,8 @@ private:
     void keyPressEvent(QKeyEvent *event);
     void paintEvent(QPaintEvent *event);
 
+    void onSaveScreen(QPixmap catureImage);
+
 private:
     QPixmap m_loadPixmap, m_capturePixmap;
     int m_screenwidth;

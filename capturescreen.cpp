@@ -3,6 +3,7 @@
 #include <QDesktopWidget>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QClipboard>
 
 // 彩色鼠标按钮图片的十六进制数据
 static const unsigned char uc_mouse_image[] = {
@@ -221,6 +222,13 @@ void CaptureScreen::paintEvent(QPaintEvent *event)
     m_painter.end();  //重绘结束;
 }
 
+void CaptureScreen::onSaveScreen(QPixmap catureImage)
+{
+    // 把图片放入剪切板
+    QClipboard *board = QApplication::clipboard();
+    board->setPixmap(catureImage);
+}
+
 // 根据当前截取状态获取当前选中的截图区域;
 QRect CaptureScreen::getSelectRect()
 {
@@ -301,6 +309,7 @@ void CaptureScreen::keyPressEvent(QKeyEvent *event)
     // Eeter键完成截图;
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)
     {
+        onSaveScreen(m_capturePixmap);
         signalCompleteCature(m_capturePixmap);
         close();
     }
