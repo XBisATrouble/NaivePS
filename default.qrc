@@ -18,7 +18,6 @@
         <file>src/restore.png</file>
         <file>src/histogram.png</file>
         <file>src/brightness.svg</file>
-        <file>src/save.svg</file>
         <file>src/zoom.png</file>
         <file>src/lineGrey.gif</file>
         <file>src/quill_72px.png</file>
@@ -33,6 +32,8 @@
         <file>src/clear_gtk_72px_43338_easyicon.net.png</file>
         <file>src/Final_Cut_Pro_X_96px_1134672_easyicon.net.png</file>
         <file>src/Screenshot.png</file>
+        <file>src/save.png</file>
+        <file>src/save-as.png</file>
     </qresource>
     <qresource prefix="/language">
         <file>cn.qm</file>

@@ -734,10 +734,12 @@ QImage Tools::ContourExtraction(const QImage &origin)
     return newImg;
 }
 
-
+/*****************************************************************************
+ *                                 TODO
+ * **************************************************************************/
 QImage Tools::ConnectedDomain(const QImage &origin)
 {
-
+    return origin;
 }
 
 

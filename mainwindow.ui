@@ -224,7 +224,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="default.qrc">
-     <normaloff>:/img/src/save.svg</normaloff>:/img/src/save.svg</iconset>
+     <normaloff>:/img/src/save.png</normaloff>:/img/src/save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save...</string>
@@ -234,6 +234,10 @@
    </property>
   </action>
   <action name="actionSave_As">
+   <property name="icon">
+    <iconset resource="default.qrc">
+     <normaloff>:/img/src/save-as.png</normaloff>:/img/src/save-as.png</iconset>
+   </property>
    <property name="text">
     <string>Sa&amp;ve As...</string>
    </property>

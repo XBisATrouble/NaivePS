@@ -392,6 +392,10 @@ void MainWindow::on_actionClose_triggered()
     cleanImage();
 }
 
+/******************************************************************************
+ *                                 TODO
+ *
+ *****************************************************************************/
 void MainWindow::on_actionSave_triggered()
 {
 
@@ -404,15 +408,10 @@ void MainWindow::on_actionSave_As_triggered()
 {
 
     QString newPath = QFileDialog::getSaveFileName(this, tr("Save image"), QString(),
-            tr("All files (*);;"
+            tr("Image PNG (*.png);;"
                "Image BPM (*.bpm);;"
                "Image GIF (*.gif);;"
-               "Image JPG (*.jpg);;"
-               "Image JPEG (*.jpeg);;"
-               "Image PNG (*.png);;"
-               "Image PPM (*.ppm);;"
-               "Image XBM (*.xbm);;"
-               "Image XPM (*.xpm);;"));
+               "Image JPG (*.jpg);;"));
 
     if (!newPath.isEmpty()) {
 
@@ -424,7 +423,6 @@ void MainWindow::on_actionSave_As_triggered()
 
         //Save image to new path
         rightPixmapItem->pixmap().save(newPath);
-//        rightImage->save(newPath);
     }
 }
 
