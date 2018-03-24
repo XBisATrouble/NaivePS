@@ -74,7 +74,7 @@ void MainWindow::startCatureImage()
     // 点击截图按钮开始截图;
     CaptureScreen* captureHelper = new CaptureScreen();
     connect(captureHelper, SIGNAL(signalCompleteCature(QPixmap)), this, SLOT(onCompleteCature(QPixmap)));
-    captureHelper->show();
+    //captureHelper->show();
 }
 
 void MainWindow::onCompleteCature(QPixmap captureImage)
