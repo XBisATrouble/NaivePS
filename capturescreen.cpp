@@ -231,6 +231,12 @@ void CaptureScreen::onSaveScreen()
     close();
 }
 
+void CaptureScreen::onCompleteShot()
+{
+    signalCompleteCature(m_capturePixmap);
+    onSaveScreen();
+}
+
 // 根据当前截取状态获取当前选中的截图区域;
 QRect CaptureScreen::getSelectRect()
 {
@@ -311,8 +317,7 @@ void CaptureScreen::keyPressEvent(QKeyEvent *event)
     // Eeter键完成截图;
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)
     {
-        signalCompleteCature(m_capturePixmap);
-        onSaveScreen();
+        onCompleteShot();
     }
 }
 
@@ -327,7 +332,6 @@ QRect CaptureScreen::getRect(const QPoint &beginPoint, const QPoint &endPoint)
 
     QRect selectedRect = QRect(x, y, width, height);
     // 避免宽或高为零时拷贝截图有误;
-    // 可以看QQ截图，当选取截图宽或高为零时默认为2;
     if (selectedRect.width() == 0)
     {
         selectedRect.setWidth(1);
@@ -535,7 +539,8 @@ QRect CaptureScreen::getStretchRect()
 void CaptureScreen::contextMenuEvent(QContextMenuEvent *event)
 {
     QMenu *menu = new QMenu(this);
-    menu->addAction(QIcon(":/img/src/comfirm.png"),QStringLiteral("完成"),this,SLOT(onSaveScreen()));
+    menu->addAction(QIcon(":/img/src/comfirm.png"),QStringLiteral("完成"),this,SLOT(onCompleteShot()));
+    menu->addAction(QIcon(":/img/src/icon_save.png"),QStringLiteral("保存"),this,SLOT(onSaveScreen()));
     menu->addSeparator();
     menu->addAction(QIcon(":/img/src/close.png"),QStringLiteral("退出"), this, SLOT(close()));
     menu->move(cursor().pos()); //让菜单显示的位置在鼠标的坐标上

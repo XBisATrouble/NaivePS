@@ -60,7 +60,8 @@ private:
     void paintEvent(QPaintEvent *event);
 
 private slots:
-    void onSaveScreen();
+    void onSaveScreen(); //保存至剪切板
+    void onCompleteShot();
 
 private:
     QPixmap m_loadPixmap, m_capturePixmap;
@@ -80,7 +81,7 @@ private:
     StretchRectState m_stretchRectState;
 
 protected:
-    virtual void contextMenuEvent(QContextMenuEvent *);
+    virtual void contextMenuEvent(QContextMenuEvent *event);
 };
 
 #endif // CAPTURESCREEN_H

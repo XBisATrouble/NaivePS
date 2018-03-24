@@ -36,6 +36,7 @@
         <file>src/save-as.png</file>
         <file>src/close.png</file>
         <file>src/comfirm.png</file>
+        <file>src/icon_save.png</file>
     </qresource>
     <qresource prefix="/language">
         <file>cn.qm</file>
