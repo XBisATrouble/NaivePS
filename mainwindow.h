@@ -141,6 +141,7 @@ private slots:
 
     void on_actionFinal_triggered();
     void on_actionScreenShot_triggered();
+
     void startCatureImage();
     void onCompleteCature(QPixmap captureImage);//完成截图
 
