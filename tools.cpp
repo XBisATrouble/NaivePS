@@ -112,6 +112,7 @@ QImage Tools::Brightness(int delta, QImage origin)
             // Check if the new values are between 0 and 255
             r = qBound(0, r, 255);
             g = qBound(0, g, 255);
+            b = qBound(0, b, 255);
 
             newImage->setPixel(x,y, qRgb(r,g,b));
         }
