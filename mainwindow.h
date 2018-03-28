@@ -108,7 +108,7 @@ private slots:
 
     void on_actionLaplace_triggered();
 
-//    void on_actionEdge_Detection_triggered();
+    // void on_actionEdge_Detection_triggered();
 
     void on_actionSobel_triggered();
 
