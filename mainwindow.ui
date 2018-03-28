@@ -64,6 +64,9 @@
     <addaction name="actionHistogram"/>
     <addaction name="actionGrayscale"/>
     <addaction name="actionAdjust_brightness"/>
+    <addaction name="actionNormal"/>
+    <addaction name="actionAdjust"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -92,7 +95,10 @@
      <property name="title">
       <string>&amp;Rotate</string>
      </property>
+     <addaction name="actionLeft90"/>
      <addaction name="actionLeft"/>
+     <addaction name="separator"/>
+     <addaction name="actionRight90"/>
      <addaction name="actionRight"/>
     </widget>
     <widget class="QMenu" name="menuFlip_2">
@@ -110,20 +116,6 @@
     <property name="title">
      <string>Artistic Effect</string>
     </property>
-    <widget class="QMenu" name="menuFrame">
-     <property name="title">
-      <string>&amp;Frame</string>
-     </property>
-     <addaction name="actionMovie_frame"/>
-     <addaction name="actionClassic_frame"/>
-     <addaction name="actionFlower_frame"/>
-    </widget>
-    <widget class="QMenu" name="menuTexture">
-     <property name="title">
-      <string>&amp;Texture</string>
-     </property>
-     <addaction name="actionMetal"/>
-    </widget>
     <widget class="QMenu" name="menuTemperature">
      <property name="title">
       <string>T&amp;emperature</string>
@@ -135,8 +127,6 @@
      <addaction name="actionCool"/>
      <addaction name="actionWarm"/>
     </widget>
-    <addaction name="menuFrame"/>
-    <addaction name="menuTexture"/>
     <addaction name="menuTemperature"/>
    </widget>
    <widget class="QMenu" name="menuBlur">
@@ -155,7 +145,6 @@
      <string>Contour Extraction</string>
     </property>
     <addaction name="actionContour_extraction"/>
-    <addaction name="actionEdge_following"/>
     <addaction name="separator"/>
     <addaction name="actionPrewitt"/>
     <addaction name="actionSobel"/>
@@ -539,6 +528,16 @@
   <action name="actionRGB2Cmyk">
    <property name="text">
     <string>RGB2Cmyk</string>
+   </property>
+  </action>
+  <action name="actionLeft90">
+   <property name="text">
+    <string>逆时针旋转90°</string>
+   </property>
+  </action>
+  <action name="actionRight90">
+   <property name="text">
+    <string>顺时针旋转90°</string>
    </property>
   </action>
  </widget>

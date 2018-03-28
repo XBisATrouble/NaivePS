@@ -66,11 +66,10 @@ private slots:
     void on_actionSave_As_triggered();      // Save as
     void on_actionExit_triggered();         // Exit the program
 
-    void on_actionGrayscale_triggered();    // Grayscale
-    void on_actionAdjust_brightness_triggered();
-
     void on_actionRestore_triggered();      // Restore to the original image
     void on_actionHistogram_triggered();
+    void on_actionGrayscale_triggered();    // Grayscale
+    void on_actionAdjust_brightness_triggered();
 
     void on_actionMovie_frame_triggered();
     void on_actionClassic_frame_triggered();
@@ -82,6 +81,7 @@ private slots:
     void on_actionSimple_triggered();
     void on_actionGauss_triggered();
     void on_actionMeida_Filter_triggered();
+    void on_actionLaplace_triggered();
 
     void on_actionLeft_triggered();         // Rotate Left: 90^
     void on_actionRight_triggered();        // Rotate Right:90^
@@ -95,56 +95,42 @@ private slots:
     void on_actionExp_transfrom_triggered();
     void on_actionTwo_thresholds_transform_triggered();
     void on_actionStretch_transformation_triggered();
-
-    void on_actionAdjust_triggered();       // Adjust to fit the window size
-    void on_actionNormal_triggered();       // Restore the right image to original size
-
-
-    void on_actionAbout_triggered();        // Show "About" dialog
-    void on_actionChinese_triggered();
-    void on_actionEnglish_triggered();
-
-    void on_actionT_triggered();
-
-    void on_actionLaplace_triggered();
-
-//    void on_actionEdge_Detection_triggered();
-
-    void on_actionSobel_triggered();
-
     void on_actionBinaryzation_triggered();
 
-    void on_actionPrewitt_triggered();
-
     void on_actionContour_extraction_triggered();
-
-    void on_actionArea_triggered();
-
-    void on_actionConnected_domain_triggered();
-
-    void on_actionCircumference_triggered();
-
+    void on_actionPrewitt_triggered();
+    void on_actionSobel_triggered();
 
     void on_actionDilate_triggered();
-
     void on_actionExpansion_triggered();
-
     void on_actionOpening_triggered();
-
     void on_actionClosing_triggered();
-
     void on_actionThinning_triggered();
 
     void on_actionRGB2HSV_triggered();
     void on_actionRGB2HSL_triggered();
     void on_actionRGB2Cmyk_triggered();
 
+    void on_actionAbout_triggered();        // Show "About" dialog
+
+    void on_actionChinese_triggered();
+    void on_actionEnglish_triggered();
+    void on_actionT_triggered();
+//    void on_actionEdge_Detection_triggered();
+    void on_actionArea_triggered();
+    void on_actionConnected_domain_triggered();
+    void on_actionCircumference_triggered();
     void on_actionFinal_triggered();
     void on_actionScreenShot_triggered();
+    void on_actionAdjust_triggered();       // Adjust to fit the window size
+    void on_actionNormal_triggered();       // Restore the right image to original size
 
     void startCatureImage();
     void onCompleteCature(QPixmap captureImage);//完成截图
 
+    void on_actionLeft90_triggered();
+
+    void on_actionRight90_triggered();
 
 private:
     QAction *finalEx;
