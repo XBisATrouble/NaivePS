@@ -42,7 +42,7 @@
      <x>0</x>
      <y>0</y>
      <width>978</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -157,7 +157,6 @@
     <addaction name="actionExpansion"/>
     <addaction name="actionOpening"/>
     <addaction name="actionClosing"/>
-    <addaction name="actionThinning"/>
    </widget>
    <widget class="QMenu" name="menuColor_Space">
     <property name="title">

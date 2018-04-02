@@ -1123,7 +1123,7 @@ void MainWindow::on_actionClosing_triggered()
 
 /*****************************************************************************
  *                                 图像细化
- * **************************************************************************/
+ * *************************************************************************
 void MainWindow::on_actionThinning_triggered()
 {
     QPixmap rightImage = rightPixmapItem->pixmap();
@@ -1132,7 +1132,7 @@ void MainWindow::on_actionThinning_triggered()
 
     updateRightImage(rightImage);
 }
-
+*/
 
 void MainWindow::on_actionRGB2HSV_triggered()
 {
