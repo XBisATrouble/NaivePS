@@ -105,7 +105,7 @@ private slots:
     void on_actionExpansion_triggered();
     void on_actionOpening_triggered();
     void on_actionClosing_triggered();
-    void on_actionThinning_triggered();
+    // void on_actionThinning_triggered();
 
     void on_actionRGB2HSV_triggered();
     void on_actionRGB2HSL_triggered();

@@ -995,14 +995,14 @@ QImage Tools::Final(const QImage &origin)
 {
     int width  = origin.width()/3;
     int height = origin.height()/3;
-    int dilateItem[9] = {1,0,1,
-                         0,0,0,
-                         1,0,1};
-
-
 
     QImage newImg = QImage(origin.width(), origin.height(), QImage::Format_RGB888);
 
+
+    /*
+    int dilateItem[9] = {1,0,1,
+                         0,0,0,
+                         1,0,1};
     for(int x=1; x<width; x++)
     {
         for(int y=1; y<height; y++)
@@ -1022,8 +1022,264 @@ QImage Tools::Final(const QImage &origin)
             }
         }
     }
+    */
+
+    // origin
+    for(int x=0; x<width; x++)
+    {
+        for(int y=0; y<height; y++)
+        {
+            newImg.setPixel(x,y, qRgb(QColor(origin.pixel(x,y)).red(),
+                                      QColor(origin.pixel(x,y)).green(),
+                                      QColor(origin.pixel(x,y)).blue()));
+        }
+    }
 
 
+    // avg 3*3
+    for(int x=width; x<2*width; x++)
+    {
+        for(int y=1; y<height; y++)
+        {
+            int sumR = 0;
+            int sumG = 0;
+            int sumB = 0;
+
+            for(int m=x-1; m<= x+1; m++)
+                for(int n=y-1; n<=y+1; n++)
+                {
+                    if(m>=width-1 && m<2*width+1 && n>=0 && n<height+1)
+                    {
+                        sumR += QColor(origin.pixel(m,n)).red();
+                        sumG += QColor(origin.pixel(m,n)).green();
+                        sumB += QColor(origin.pixel(m,n)).blue();
+                    }
+                }
+
+            sumR /= 9;
+            sumG /= 9;
+            sumB /= 9;
+
+            sumR = qBound(0, sumR, 255);
+            sumG = qBound(0, sumG, 255);
+            sumB = qBound(0, sumB, 255);
+
+
+            newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
+        }
+    }
+
+    // avg 5*5
+    for(int x=2*width; x<3*width-2; x++)
+    {
+        for(int y=1; y<height; y++)
+        {
+            int sumR = 0;
+            int sumG = 0;
+            int sumB = 0;
+
+            for(int m=x-2; m<= x+2; m++)
+                for(int n=y-2; n<=y+2; n++)
+                {
+                    if(m>=2*width-2 && m<3*width && n>=0 && n<height+2)
+                    {
+                        sumR += QColor(origin.pixel(m,n)).red();
+                        sumG += QColor(origin.pixel(m,n)).green();
+                        sumB += QColor(origin.pixel(m,n)).blue();
+                    }
+                }
+
+            sumR /= 25;
+            sumG /= 25;
+            sumB /= 25;
+
+            sumR = qBound(0, sumR, 255);
+            sumG = qBound(0, sumG, 255);
+            sumB = qBound(0, sumB, 255);
+
+
+            newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
+        }
+    }
+
+
+
+    // max 3*3
+    for(int x=1; x<width; x++)
+    {
+        for(int y=height; y<2*height; y++)
+        {
+            int sumR = 0;
+            int sumG = 0;
+            int sumB = 0;
+
+            for(int m=x-1; m<= x+1; m++)
+                for(int n=y-1; n<=y+1; n++)
+                {
+                    if(m>=0 && m<width+1 && n>=height-1 && n<2*height+1)
+                    {
+                        sumR = std::max(QColor(origin.pixel(m,n)).red(), sumR);
+                        sumG = std::max(QColor(origin.pixel(m,n)).green(), sumG);
+                        sumB = std::max(QColor(origin.pixel(m,n)).blue(), sumB);
+                    }
+                }
+
+            sumR = qBound(0, sumR, 255);
+            sumG = qBound(0, sumG, 255);
+            sumB = qBound(0, sumB, 255);
+
+
+            newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
+        }
+    }
+
+    // min 3*3
+    for(int x=width; x<2*width; x++)
+    {
+        for(int y=height; y<2*height; y++)
+        {
+            int sumR = QColor(origin.pixel(x,y)).red();
+            int sumG = QColor(origin.pixel(x,y)).green();
+            int sumB = QColor(origin.pixel(x,y)).blue();
+
+            for(int m=x-1; m<= x+1; m++)
+                for(int n=y-1; n<=y+1; n++)
+                {
+                    if(m>=width-1 && m<2*width+1 && n>=height-1 && n<2*height+1)
+                    {
+                        if(QColor(origin.pixel(m,n)).red() < sumR) sumR = QColor(origin.pixel(m,n)).red();
+                        if(QColor(origin.pixel(m,n)).green() < sumG) sumG = QColor(origin.pixel(m,n)).green();
+                        if(QColor(origin.pixel(m,n)).blue() < sumB) sumB = QColor(origin.pixel(m,n)).blue();
+                    }
+                }
+
+            sumR = qBound(0, sumR, 255);
+            sumG = qBound(0, sumG, 255);
+            sumB = qBound(0, sumB, 255);
+
+
+            newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
+        }
+    }
+
+    // mid 3*3
+    for(int x=2*width; x<3*width-1; x++)
+    {
+        for(int y=height; y<2*height; y++)
+        {
+            int sumR[9] = {0};
+            int sumG[9] = {0};
+            int sumB[9] = {0};
+
+            for(int m=x-1; m<= x+1; m++)
+                for(int n=y-1; n<=y+1; n++)
+                {
+                    if(m>=2*width-1 && m<3*width-1 && n>height-1 && n<2*height+1)
+                    {
+                        sumR[(m-x+1)*3+n-y+1] = QColor(origin.pixel(m,n)).red();
+                        sumG[(m-x+1)*3+n-y+1] = QColor(origin.pixel(m,n)).green();
+                        sumB[(m-x+1)*3+n-y+1] = QColor(origin.pixel(m,n)).blue();
+                    }
+                }
+            std::sort(sumR, sumR+9);
+            std::sort(sumG, sumG+9);
+            std::sort(sumB, sumB+9);
+
+            newImg.setPixel(x,y, qRgb(sumR[4], sumG[4], sumB[4]));
+        }
+    }
+
+
+    // max 5*5
+    for(int x=2; x<width; x++)
+    {
+        for(int y=2*height; y<3*height; y++)
+        {
+            int sumR = 0;
+            int sumG = 0;
+            int sumB = 0;
+
+            for(int m=x-2; m<= x+2; m++)
+                for(int n=y-2; n<=y+2; n++)
+                {
+                    if(m>=0 && m<width+2 && n>=2*height-2 && n<3*height)
+                    {
+                        sumR = std::max(QColor(origin.pixel(m,n)).red(), sumR);
+                        sumG = std::max(QColor(origin.pixel(m,n)).green(), sumG);
+                        sumB = std::max(QColor(origin.pixel(m,n)).blue(), sumB);
+                    }
+                }
+
+            sumR = qBound(0, sumR, 255);
+            sumG = qBound(0, sumG, 255);
+            sumB = qBound(0, sumB, 255);
+
+
+            newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
+        }
+    }
+
+    // min 5*5
+    for(int x=width; x<2*width; x++)
+    {
+        for(int y=2*height; y<3*height; y++)
+        {
+            int sumR = QColor(origin.pixel(x,y)).red();
+            int sumG = QColor(origin.pixel(x,y)).green();
+            int sumB = QColor(origin.pixel(x,y)).blue();
+
+            for(int m=x-2; m<= x+2; m++)
+                for(int n=y-2; n<=y+2; n++)
+                {
+                    if(m>=width-2 && m<2*width+2 && n>=2*height-2 && n<3*height)
+                    {
+                        if(QColor(origin.pixel(m,n)).red() < sumR) sumR = QColor(origin.pixel(m,n)).red();
+                        if(QColor(origin.pixel(m,n)).green() < sumG) sumG = QColor(origin.pixel(m,n)).green();
+                        if(QColor(origin.pixel(m,n)).blue() < sumB) sumB = QColor(origin.pixel(m,n)).blue();
+                    }
+                }
+
+            sumR = qBound(0, sumR, 255);
+            sumG = qBound(0, sumG, 255);
+            sumB = qBound(0, sumB, 255);
+
+
+            newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
+        }
+    }
+
+    // mid 5*5
+    for(int x=2*width; x<3*width-2; x++)
+    {
+        for(int y=2*height; y<3*height; y++)
+        {
+            int sumR[25] = {0};
+            int sumG[25] = {0};
+            int sumB[25] = {0};
+
+            for(int m=x-2; m<= x+2; m++)
+                for(int n=y-2; n<=y+2; n++)
+                {
+                    if(m>=2*width-2 && m<3*width && n>=2*height-2 && n<3*height)
+                    {
+                        sumR[(m-x+2)*5+n-y+2] = QColor(origin.pixel(m,n)).red();
+                        sumG[(m-x+2)*5+n-y+2] = QColor(origin.pixel(m,n)).green();
+                        sumB[(m-x+2)*5+n-y+2] = QColor(origin.pixel(m,n)).blue();
+                    }
+                }
+            std::sort(sumR, sumR+25);
+            std::sort(sumG, sumG+25);
+            std::sort(sumB, sumB+25);
+
+            newImg.setPixel(x,y, qRgb(sumR[12], sumG[12], sumB[12]));
+        }
+    }
+
+
+
+
+
+    /*
     // laplace
     int window[3][3] = {0,-1,0,-1,4,-1,0,-1,0};
     for(int x=width; x<2*width; x++)
@@ -1063,7 +1319,7 @@ QImage Tools::Final(const QImage &origin)
             newImg.setPixel(x,y, qRgb(sumR, sumG, sumB));
         }
     }
-
+    */
 
 
 
