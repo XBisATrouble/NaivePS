@@ -12,6 +12,9 @@
 #include <QDebug>
 #include <QPainter>
 #include <QtMath>
+#include <cmath>
+#include <algorithm>
+#include <iostream>
 #include "gaussianblur.h"
 
 
