@@ -42,7 +42,7 @@
      <x>0</x>
      <y>0</y>
      <width>978</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -254,7 +254,7 @@
   </action>
   <action name="actionAdjust">
    <property name="text">
-    <string>Adjust</string>
+    <string>适应</string>
    </property>
   </action>
   <action name="actionRestore">
@@ -486,7 +486,7 @@
   </action>
   <action name="actionDilate">
    <property name="text">
-    <string>Dilate</string>
+    <string>腐蚀</string>
    </property>
   </action>
   <action name="actionExpansion">
