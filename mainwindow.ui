@@ -131,7 +131,7 @@
    </widget>
    <widget class="QMenu" name="menuBlur">
     <property name="title">
-     <string>Smoothi&amp;ng and  Sharpen</string>
+     <string>空间滤波</string>
     </property>
     <addaction name="actionSimple"/>
     <addaction name="actionGauss"/>
@@ -166,10 +166,18 @@
     <addaction name="actionRGB2HSL"/>
     <addaction name="actionRGB2Cmyk"/>
    </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>频率滤波</string>
+    </property>
+    <addaction name="actionLowpass"/>
+    <addaction name="actionHighpass"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuArtistic_Effect"/>
    <addaction name="menuBlur"/>
+   <addaction name="menu"/>
    <addaction name="menuGeometric"/>
    <addaction name="menuGrey_Transfrom"/>
    <addaction name="menuContour_extraction"/>
@@ -537,6 +545,16 @@
   <action name="actionRight90">
    <property name="text">
     <string>顺时针旋转90°</string>
+   </property>
+  </action>
+  <action name="actionLowpass">
+   <property name="text">
+    <string>低通滤波</string>
+   </property>
+  </action>
+  <action name="actionHighpass">
+   <property name="text">
+    <string>高通滤波</string>
    </property>
   </action>
  </widget>

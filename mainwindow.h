@@ -132,6 +132,10 @@ private slots:
 
     void on_actionRight90_triggered();
 
+    void on_actionHighpass_triggered();
+
+    void on_actionLowpass_triggered();
+
 private:
     QAction *finalEx;
     QAction *screenShot;

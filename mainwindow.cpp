@@ -1188,3 +1188,13 @@ void MainWindow::on_actionRight90_triggered()
     newPixmap = QPixmap::fromImage(*imgRotate);
     updateRightImage(newPixmap);
 }
+
+void MainWindow::on_actionHighpass_triggered()
+{
+    //TODO 高通滤波
+}
+
+void MainWindow::on_actionLowpass_triggered()
+{
+    //TODO 低通滤波
+}
