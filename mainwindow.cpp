@@ -179,9 +179,15 @@ void MainWindow::setActionStatus(bool status)
     ui->actionMeida_Filter->setEnabled(status);
     ui->actionLaplace->setEnabled(status);
 
+    //
+    ui->actionLowpass->setEnabled(status);
+    ui->actionHighpass->setEnabled(status);
+
     // Geometric Transform
     ui->actionLeft->setEnabled(status);
     ui->actionRight->setEnabled(status);
+    ui->actionLeft90->setEnabled(status);
+    ui->actionRight90->setEnabled(status);
     ui->zoomAction->setEnabled(status);
     ui->actionHorizontal->setEnabled(status);
     ui->actionVertical->setEnabled(status);
